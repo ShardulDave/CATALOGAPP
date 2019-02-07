@@ -8,7 +8,7 @@ A web application that provides a list of items within a variety of categories a
   * SQLAlchemy 1.3
   * PostgreSQL 9.5.14
   * Vagrant
-  * HTML5, CSS3, JavaScript
+  * HTML5, CSS3, JavaScript(ES6)
   
 This web application is an project under the Udacity's Full Stack Nanodegree program.
 
