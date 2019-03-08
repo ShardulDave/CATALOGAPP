@@ -10,7 +10,7 @@ A web application that provides a list of items within a variety of categories a
   * Vagrant
   * HTML5, CSS3, JavaScript(ES6)
   
-This web application is an project under the Udacity's Full Stack Nanodegree program.
+This web application is a project under the Udacity's Full Stack Nanodegree program.
 
 ## References
 
