@@ -29,3 +29,14 @@ session.commit()
 item1=Item(name='Soccer',description='Played in the world', price='12345', course='ball',category_id=1,user_id=1)
 session.add(item1)
 session.commit()
+
+#deleting the data
+cats=session.query(Item).filter_by(id=3).one()
+
+session.delete(cats)
+session.commit()
+
+#looping through the data
+items=session.query(Item).all()
+for item in items:
+    print(item.id)
