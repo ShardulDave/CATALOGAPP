@@ -4,13 +4,18 @@ A web application that provides a list of items within a variety of categories a
 
 ## Technologies which will be used
 
+
+|Flask|SQLAlchemy|PostgreSQL|
+|--|--|--|
+|[![mdb](http://flask.pocoo.org/docs/1.0/_images/logo-full.png)](http://flask.pocoo.org/)|[![mdb](https://www.sqlalchemy.org/img/sqla_logo.png)](https://www.sqlalchemy.org/)|[![mdb](https://www.postgresql.org/media/img/about/press/elephant.png)](https://www.postgresql.org/)
+|Flask is a microframework for Python based on Werkzeug, Jinja 2 and good intentions.|The SQLAlchemy SQL Toolkit and Object Relational Mapper is a comprehensive set of tools for working with databases and Python.|PostgreSQL is a powerful, open source object-relational database system that uses and extends the SQL language combined with many features that safely store and scale the most complicated data workloads.|
   * Flask 1.0.2 
   * SQLAlchemy 1.3
   * PostgreSQL 9.5.14
   * Vagrant
   * HTML5, CSS3, JavaScript(ES6)
   
-This web application is an project under the Udacity's Full Stack Nanodegree program.
+This web application is a project under the Udacity's Full Stack Nanodegree program.
 
 ## References
 
