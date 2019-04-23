@@ -5,7 +5,7 @@
     
   window.fbAsyncInit = function() {
   FB.init({
-    appId      : '381028522622998',
+    appId      : '634332490347056',
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
@@ -42,7 +42,7 @@
         if (result) {
           $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
          setTimeout(function() {
-          window.location.href = "/category/";
+          window.location.href = "/category";
          }, 4000);
           
 
@@ -63,13 +63,13 @@
 <button>
          
 
-          <fb:login-button scope="public_profile,email" onlogin="sendTokenToServer();">
+<fb:login-button scope="public_profile,email" onlogin="sendTokenToServer();">
 <a href='javascript:sendTokenToServer()'>Login with Facebook</a>
 
 </fb:login-button>
 
 
-        </button>
+</button>
 <!--END FACEBOOK SIGN IN -->
 
   </body>
