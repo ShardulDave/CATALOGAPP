@@ -26,17 +26,16 @@ category1=Category(name='Football',user_id=1)
 session.add(category1)
 session.commit()
 
-item1=Item(name='Soccer',description='Played in the world', price='12345', course='ball',category_id=1,user_id=1)
+item1=Item(name='Soccer',description='Played in the world',category_id=1,user_id=1)
 session.add(item1)
 session.commit()
 
 #deleting the data
-cats=session.query(Item).filter_by(id=3).one()
+#cats=session.query(Item).filter_by(id=3).one()
 
-session.delete(cats)
-session.commit()
+#session.commit()
 
 #looping through the data
-items=session.query(Item).all()
-for item in items:
-    print(item.id)
+#items=session.query(Item).all()
+f#or item in items:
+    #print(item.id)
