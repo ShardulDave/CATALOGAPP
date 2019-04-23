@@ -37,5 +37,5 @@ session.commit()
 
 #looping through the data
 #items=session.query(Item).all()
-f#or item in items:
+#for item in items:
     #print(item.id)
