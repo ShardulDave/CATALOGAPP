@@ -8,30 +8,32 @@ from sqlalchemy import create_engine
 from sqlalchemy import Column, String, ForeignKey, Integer  
 from sqlalchemy.ext.declarative import declarative_base  
 from sqlalchemy.orm import sessionmaker, relationship
-from database_setup import User, Category, Item
+from database_setup import Base, User, Category, Item
 
 app = Flask(__name__)
 
-db_string = "postgres:///catalogdb"
+engine = create_engine("postgres:///catalogdb")  
+Base.metadata.bind = engine
 
-db = create_engine(db_string)  
-Base = declarative_base()
+DBSession = sessionmaker(bind=engine)
+session = DBSession()
 
-Session = sessionmaker(db)  
-session = Session()
+# JSON APIs Endpoints to view Categories and the items within each categories
 
-@app.route('/')
-@app.route('/category/')
-def showCategory():
-	categories = session.query(Category).all()
-	return render_template('category.html', categories=categories)
+@app.route('/category/<int:category_id>/item/JSON')
+def categoryItemJSON(category_id):
+    items = session.query(Item).filter_by(category_id=category_id).all()
+    return jsonify(Items=[i.serialize for i in items])
 
+@app.route('/category/<int:category_id>/item/<int:item_id>/JSON')
+def itemJSON(category_id, item_id):
+    item = session.query(Item).filter_by(id=item_id).one()
+    return jsonify(Item=item.serialize)
 
-@app.route('/category/<int:category_id>/')
-def showItems(category_id):
-	category=session.query(Category).filter_by(id=category_id).one()
-	items=session.query(Item).filter_by(category_id=category_id).all()
-	return render_template('item.html', category=category,items=items)
+@app.route('/category/JSON')
+def categoryJSON():
+    categories = session.query(Category).all()
+    return jsonify(categories=[r.serialize for r in categories])
 
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'

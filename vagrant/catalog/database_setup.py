@@ -6,14 +6,11 @@ from sqlalchemy import create_engine
 from sqlalchemy import Column, String, ForeignKey, Integer  
 from sqlalchemy.ext.declarative import declarative_base  
 from sqlalchemy.orm import sessionmaker, relationship
-
-db_string = "postgres:///catalogdb"
-
-db = create_engine(db_string)  
+ 
 Base = declarative_base()
 
 class User(Base):
-    __tablename__ = 'user'
+    __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
@@ -26,7 +23,7 @@ class Category(Base):
     
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
-    user_id = Column(Integer, ForeignKey('user.id'))
+    user_id = Column(Integer, ForeignKey('users.id'))
     user = relationship(User)
 
     @property
@@ -45,7 +42,7 @@ class Item(Base):
     name = Column(String(80), nullable=False)
     description = Column(String(250))
     category_id = Column(Integer, ForeignKey('category.id'))
-    user_id = Column(Integer, ForeignKey('user.id'))
+    user_id = Column(Integer, ForeignKey('users.id'))
     category = relationship(Category)
     user = relationship(User)
 
@@ -59,7 +56,7 @@ class Item(Base):
         }
 
 
-Session = sessionmaker(db)  
-session = Session()
 
-Base.metadata.create_all(db)
+engine=create_engine("postgres:///catalogdb")
+
+Base.metadata.create_all(engine)
