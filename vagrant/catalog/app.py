@@ -4,7 +4,7 @@
 
 from flask import Flask, render_template, request, redirect, url_for, jsonify, flash
 
-from sqlalchemy import create_engine  
+from sqlalchemy import create_engine, asc  
 from sqlalchemy import Column, String, ForeignKey, Integer  
 from sqlalchemy.ext.declarative import declarative_base  
 from sqlalchemy.orm import sessionmaker, relationship
@@ -151,12 +151,46 @@ def getUserID(email):
     except:
         return None
 
+#Show all categories
 @app.route('/')
-@app.route('/categories/')
+@app.route('/category/')
 def showCategories():
-    categories = session.query(Category).all()
-    return render_template('index.html', categories=categories)
+    categories = session.query(Category).order_by(asc(Category.name))
+    if 'username' not in login_session:
+        return render_template('publiccategories.html', categories=categories)
+    else:
+        return render_template('categories.html', categories=categories)
 
+
+#Create new category
+
+@app.route('/category/new/', methods=['GET', 'POST'])
+def newCategory():
+    if 'username' not in login_session:
+        return redirect('/login')
+    if request.method == 'POST':
+        newCategory = Category(
+            name=request.form['name'], user_id=login_session['user_id'])
+        session.add(newCategory)
+        flash('New Category %s Successfully Created' % newCategory.name)
+        session.commit()
+        return redirect(url_for('showCategories'))
+    else:
+        return render_template('newCategory.html')
+
+# Show items in a category
+
+@app.route('/restaurant/<int:category_id>/')
+@app.route('/restaurant/<int:category_id>/item/')
+def showItem(category_id):
+    category = session.query(Category).filter_by(id=category_id).one()
+    creator = getUserInfo(category.user_id)
+    items = session.query(Item).filter_by(
+        category_id=category_id).all()
+    if 'username' not in login_session or creator.id != login_session['user_id']:
+        return render_template('publicmenu.html', items=items, category=category, creator=creator)
+    else:
+        return render_template('menu.html', items=items, category=category, creator=creator)
 
 # Disconnect based on provider
 @app.route('/disconnect')
