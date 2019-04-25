@@ -1,17 +1,38 @@
 <html>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+      
+	<link rel="icon" type="image/png" href="{{ url_for('static',filename='images/icons/favicon.ico')}}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='fonts/Linearicons-Free-v1.0.0/icon-font.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='vendor/animate/animate.css')}}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='vendor/css-hamburgers/hamburgers.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='vendor/select2/select2.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/util.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/main.css')}}">
+<!--===============================================================================================-->
 </head>
 <body>
 <!--FACEBOOK SIGN IN -->
 <script>
     window.fbAsyncInit = function() {
         FB.init({
-          appId      : '',
+          appId      : '634332490347056',
           cookie     : true,  // enable cookies to allow the server to access
                               // the session
           xfbml      : true,  // parse social plugins on this page
-          version    : 'v3.2' // use version 2.8
+          version    : 'v3.2' // use version 3.2
         });
         FB.AppEvents.logPageView();
     };
@@ -54,14 +75,24 @@
         });
     }
 </script>
-      
-<button>
-          
-    <fb:login-button scope="public_profile,email" onlogin="sendTokenToServer();">
-        <a href='javascript:sendTokenToServer()'>Login with Facebook</a>
-    </fb:login-button>
-          
-</button>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
+            
+            <span class="login100-form-title p-b-55">
+                Login
+            </span>
+            
+            <div class="container-login100-form-btn p-t-25">
+                <fb:login-button scope="public_profile,email" onlogin="sendTokenToServer();">
+                        <i class="fa fa-facebook-official"></i>
+                        <a href='javascript:sendTokenToServer()'>Facebook</a>
+                    </fb:login-button>	     
+            </div>    
+        </div>
+    </div>
+</div>
 <!--END FACEBOOK SIGN IN -->
       
 </body>

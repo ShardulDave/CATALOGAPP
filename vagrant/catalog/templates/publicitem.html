@@ -39,17 +39,16 @@
 	{% if items !=[] %}	
 		<div class="row">
 			<div class="col-md-1"></div>
-			
-				<h2>Appetizers</h2>
-					{% for i in items %}
-						
-						<div class="menu-item">
-							<h3>{{i.name}}</h3>
-							<p>{{i.description}}</p>
+		
+				{% for i in items %}
+					
+					<div class="menu-item">
+						<h3>{{i.name}}</h3>
+						<p>{{i.description}}</p>
 
-						</div>
-						
-					{% endfor %}
+					</div>
+					
+				{% endfor %}
 			</div>
 			
 			<div class="col-md-1"></div>
