@@ -81,3 +81,5 @@ $ python app.py
 * https://www.compose.com/articles/using-postgresql-through-sqlalchemy/
 * https://docs.sqlalchemy.org/en/latest/dialects/postgresql.html
 
+## Citation
+* https://github.com/udacity/ud330/tree/master/Lesson4/step2
