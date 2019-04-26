@@ -18,7 +18,7 @@ A web application that provides a list of items within a variety of categories a
   
 This web application is a project under the Udacity's Full Stack Nanodegree program.
 
-## Prerequisites
+## Steps to run the application
 ### Part 1
 1) [Download Vagrant](https://www.vagrantup.com/downloads.html)
 2) [Download VirtualBox](https://www.virtualbox.org/)
