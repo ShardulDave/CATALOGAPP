@@ -122,7 +122,8 @@ def gconnect():
     stored_access_token = login_session.get('access_token')
     stored_gplus_id = login_session.get('gplus_id')
     if stored_access_token is not None and gplus_id == stored_gplus_id:
-        response = make_response(json.dumps('Current user is already connected.'),
+        response = make_response(json.dumps('''Current user
+                                            is already connected.'''),
                                  200)
         response.headers['Content-Type'] = 'application/json'
         return response
@@ -156,7 +157,10 @@ def gconnect():
     output += '!</h1>'
     output += '<img src="'
     output += login_session['picture']
-    output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
+    output += ''' " style = "width: 300px;
+                            height: 300px;border-radius:150px;
+                            -webkit-border-radius:150px;
+                            -moz-border-radius:150px;"> '''
     flash("you are now logged in as %s" % login_session['username'])
     print "done!"
     return output
@@ -185,6 +189,7 @@ def getUserID(email):
     except:
         return None
 
+
 @app.route('/gdisconnect')
 def gdisconnect():
     # Only disconnect a connected user.
@@ -202,7 +207,8 @@ def gdisconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
     else:
-        response = make_response(json.dumps('Failed to revoke token for given user.', 400))
+        response = make_response(json.dumps('''Failed to revoke token
+                                            for given user.''', 400))
         response.headers['Content-Type'] = 'application/json'
         return response
 # Show all categories
@@ -395,4 +401,3 @@ if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
     app.debug = True
     app.run(host='0.0.0.0', port=5000)
-
