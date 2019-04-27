@@ -1,100 +1,92 @@
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-      
-	<link rel="icon" type="image/png" href="{{ url_for('static',filename='images/icons/favicon.ico')}}"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='fonts/Linearicons-Free-v1.0.0/icon-font.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='vendor/animate/animate.css')}}">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='vendor/css-hamburgers/hamburgers.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='vendor/select2/select2.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/util.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/main.css')}}">
-<!--===============================================================================================-->
-</head>
-<body>
-<!--FACEBOOK SIGN IN -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->	
+          
+        <link rel="icon" type="image/png" href="{{ url_for('static',filename='images/icons/favicon.ico')}}"/>
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css')}}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='fonts/Linearicons-Free-v1.0.0/icon-font.min.css')}}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='vendor/animate/animate.css')}}">
+    <!--===============================================================================================-->	
+        <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='vendor/css-hamburgers/hamburgers.min.css')}}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='vendor/select2/select2.min.css')}}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/util.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/main.css')}}">
+    <!--===============================================================================================-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
 <script>
-    window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '634332490347056',
-          cookie     : true,  // enable cookies to allow the server to access
-                              // the session
-          xfbml      : true,  // parse social plugins on this page
-          version    : 'v3.2' // use version 3.2
-        });
-        FB.AppEvents.logPageView();
-    };
-    
-    // Load the SDK asynchronously
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-    // Here we run a very simple test of the Graph API after login is
-    // successful.  See statusChangeCallback() for when this call is made.
-    function sendTokenToServer() {
-        var access_token = FB.getAuthResponse()['accessToken'];
-        console.log(access_token)
-        console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me', function(response) {
-            console.log('Successful login for: ' + response.name);
-            $.ajax({
-            type: 'POST',
-            url: '/fbconnect?state={{STATE}}',
-            processData: false,
-            data: access_token,
-            contentType: 'application/octet-stream; charset=utf-8',
-            success: function(result) {
-              // Handle or verify the server response if necessary.
-              if (result) {
-                $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
-                setTimeout(function() {
-                    window.location.href = "/";
-                }, 4000);
-              } else {
-               $('#result').html('Failed to make a server-side call. Check your configuration and console.');
-              }
-             }
-            });
-        });
-    }
+  function start() {
+    gapi.load('auth2', function() {
+      auth2 = gapi.auth2.init({
+        client_id: '178825328448-3ktsv4kt0hqob42bvj2rlp3e258v11ag.apps.googleusercontent.com'
+      });
+    });
+  }
 </script>
+</head>
+
+
+<body>
 
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
-            
+                
             <span class="login100-form-title p-b-55">
                 Login
             </span>
-            
+                
             <div class="container-login100-form-btn p-t-25">
-                <fb:login-button scope="public_profile,email" onlogin="sendTokenToServer();">
-                        <i class="fa fa-facebook-official"></i>
-                        <a href='javascript:sendTokenToServer()'>Facebook</a>
-                    </fb:login-button>	     
+                <button id="signinButton">Google Signin</button>
+                <div id="result"></div>
+                        
             </div>    
         </div>
     </div>
 </div>
-<!--END FACEBOOK SIGN IN -->
-      
+
+
+
+<script>
+  $('#signinButton').click(function() {
+    function signInCallback(authResult){
+      if (authResult['code']){
+        $('#signinButton').attr('style', 'display: none');
+        $.ajax({
+          type: 'POST',
+          url: '/gconnect?state={{STATE}}',
+          headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+          },
+          contentType: 'application/octet-stream; charset=utf-8',
+          success:function(result){
+            $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
+                 setTimeout(function() {
+                  window.location.href = "/";
+                 }, 2000);
+          },
+          processData:false,
+          data:authResult['code']
+        });
+      } else{
+        // handle error
+        console.log('There was an error: ' + authResult['error']);
+        $('#result').html('Failed to make a server-side call. Check your configuration and console.');
+
+      }
+    }
+    auth2.grantOfflineAccess().then(signInCallback);
+  });
+</script>
 </body>
 </html>
-      
