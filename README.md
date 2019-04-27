@@ -33,17 +33,8 @@ This web application is a project under the Udacity's Full Stack Nanodegree prog
 2) [Download VirtualBox](https://www.virtualbox.org/)
 
 ### Part 2
-1) Go to https://developers.facebook.com/
-2) Log-In into it
-3) go to My Apps-> Add New App
-4) Write a name into display name and click on Create App ID
-5) Now on the top left corner click the drop down box(where the app name will be written)
-6) Click Create Test App and then again Create Test App
-7) Now in the left navigation bar click on PRODUCTS and click Facebook Login
-8) Click on Web
-9) Set the url as http://localhost:8000
-10) Now in the left navigation bar go to Settings and click Basic
-11) Save the App ID and App Secret.
+1) Follow the steps to setup google application
+* https://developers.google.com/identity/sign-in/web/server-side-flow
 
 ### Part 4
 1) Clone the repository
