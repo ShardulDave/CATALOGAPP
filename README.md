@@ -2,7 +2,7 @@
 
 A web application that provides a list of items within a variety of categories and integrate third party user registration and authentication. 
 
-## Technologies which will be used
+## Technologies used
 
 
 |Flask|SQLAlchemy|PostgreSQL|
@@ -18,6 +18,15 @@ A web application that provides a list of items within a variety of categories a
   
 This web application is a project under the Udacity's Full Stack Nanodegree program.
 
+## Main features of this application
+
+1) Implements CRUD operations
+2) Implements OAuth(Google) to login
+3) Implements API JSON endpoints
+   1) http://localhost:5000/category/[int:category_id]/item/JSON
+   2) http://localhost:5000/category/[int:category_id]/item/[int:item_id]/JSON
+   3) http://localhost:5000/category/JSON
+   
 ## Steps to run the application
 ### Part 1
 1) [Download Vagrant](https://www.vagrantup.com/downloads.html)
