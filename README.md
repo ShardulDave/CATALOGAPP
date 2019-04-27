@@ -36,7 +36,7 @@ This web application is a project under the Udacity's Full Stack Nanodegree prog
 1) Follow the steps to setup google application
 * https://developers.google.com/identity/sign-in/web/server-side-flow
 
-### Part 4
+### Part 3 
 1) Clone the repository
 ```sh
 $ git clone https://github.com/ShardulDave/Catalog_Application.git
